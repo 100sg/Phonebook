@@ -12,7 +12,7 @@
 	
 	<select id="selectDetail" parameterType="int" resultType="com.ex.demo.vo.Phonebook">
 		SELECT
-				tb_account_user as tbAccountUser, name, phone_number as phoneNumber, address, birthday, memo
+				no, tb_account_user as tbAccountUser, name, phone_number as phoneNumber, address, birthday, memo
 		FROM
 				tb_phonebook
 		WHERE 
