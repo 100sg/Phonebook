@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ex.demo.dao.PhonebookDao">
+	
+	<select id="selectList" resultType="com.ex.demo.vo.Phonebook">
+		SELECT
+				no, tb_account_user as tbAccountUser, name, phone_number as phoneNumber, address, birthday, memo
+		FROM
+				tb_phonebook		
+	</select> 
+	
+	<select id="selectDetail" parameterType="int" resultType="com.ex.demo.vo.Phonebook">
+		SELECT
+				tb_account_user as tbAccountUser, name, phone_number as phoneNumber, address, birthday, memo
+		FROM
+				tb_phonebook
+		WHERE 
+				no = #{no}
+	
+	</select>
+	
+	<insert id="insertData" parameterType="java.util.Map">
+		INSERT INTO
+			tb_phonebook(
+				tb_account_user,
+				name,
+				phone_number,
+				email,
+				address,
+				birthday,
+				memo )
+		VALUES (
+			#{tbAccountUser},
+			#{name},
+			#{phoneNumber},
+			#{email},
+			#{address},
+			#{birthday},
+			#{memo} )
+	</insert>
+	
+	<update id="updateData" parameterType="java.util.Map">
+		UPDATE 
+			tb_phonebook
+		SET
+			<if test="name != null and name != ''">
+				name = #{name}
+			</if>
+			<if test="phone_number != null and phone_number != ''">
+				, phone_number = #{phoneNumber}
+			</if>
+			<if test="phone_number != null and phone_number != ''">
+				, email = #{email}
+			</if>
+			<if test="phone_number != null and phone_number != ''">
+				, address = #{address}
+			</if>
+			<if test="phone_number != null and phone_number != ''">
+				, birthday = #{birthday}
+			</if>
+			<if test="phone_number != null and phone_number != ''">
+				, memo = #{memo}
+			</if>
+		WHERE 
+			id = #{id}
+	</update>
+	
+	<delete id="delData" parameterType="int">
+		DELETE 
+		FROM
+			tb_phonebook
+		WHERE
+			id = #{id}
+	</delete>
+
+</mapper>
